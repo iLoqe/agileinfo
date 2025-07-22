@@ -1,18 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
+@import "tw-animate-css";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-@import "tailwindcss";
-@import "tw-animate-css";
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
 
-@theme {
+:root {
   --color-primary-dark: #1a1a2e;
   --color-secondary-dark: #16213e;
   --color-accent-blue: #0f3460;
@@ -22,7 +26,7 @@
   --color-card-background: #1e293b;
   --color-border: rgba(255,255,255,0.1);
 
-  --font-inter: Inter, sans-serif;
+  --font-inter: 'Inter', sans-serif;
 
   --text-hero-heading: 48px;
   --text-section-heading: 36px;
@@ -67,19 +71,4 @@
     text-decoration: none;
     color: inherit;
   }
-}font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
