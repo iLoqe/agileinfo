@@ -5,9 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 const navLinks = [
-  { href: "#", label: "Home" },
+  { href: "/", label: "Home" },
   { href: "#services", label: "Services" },
   { href: "#career", label: "Career" },
   { href: "#about", label: "About" },
@@ -34,11 +35,11 @@ const Navigation = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        hasScrolled ? "bg-primary-dark/90 backdrop-blur-sm border-b border-border" : "bg-transparent"
+        hasScrolled ? "bg-[#0a0a0a]/90 backdrop-blur-sm border-b border-[#1a1a2e]" : "bg-[#0a0a0a]"
       }`}
     >
       <div className="mx-auto flex h-20 max-w-[1200px] items-center justify-between px-5">
-        <Link href="/" aria-label="AGIEINFOTECH Home">
+        <Link href="/" className="flex items-center" aria-label="AGIEINFOTECH Home">
           <Image
             src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/ab4a205c-77f9-481e-8f11-2e2336c993f1-agileinfoz-com/assets/images/logo-white-1.webp"
             alt="AGIEINFOTECH Logo"
@@ -49,32 +50,26 @@ const Navigation = () => {
           />
         </Link>
         
-        <nav className="hidden items-center space-x-8 md:flex">
+        <nav className="hidden items-center space-x-10 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="text-lg font-medium text-pink-500 hover:text-pink-300 transition-colors duration-200"
+              className="text-base font-medium text-[#ff0066] hover:text-[#ff3385] transition-colors duration-200"
             >
               {link.label}
             </Link>
           ))}
+          <div className="flex items-center pl-8 border-l border-[#1a1a2e]">
+            <ThemeToggle />
+          </div>
         </nav>
-        {/* Theme toggle switch */}
-        <div className="ml-6 flex items-center">
-          <button
-            aria-label="Toggle theme"
-            className="relative w-12 h-6 bg-gray-700 rounded-full flex items-center px-1 focus:outline-none border-2 border-gray-600"
-          >
-            <span className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full shadow transition-transform duration-300" style={{ transform: 'translateX(24px)' }}></span>
-            <span className="sr-only">Toggle dark mode</span>
-          </button>
-        </div>
         
-        <div className="md:hidden">
+        <div className="md:hidden flex items-center space-x-4">
+          <ThemeToggle />
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="inline-flex items-center justify-center rounded-md p-2 text-text-primary hover:bg-secondary-dark focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            className="inline-flex items-center justify-center rounded-md p-2 text-pink-500 hover:text-pink-400 hover:bg-[#1a1a2e] focus:outline-none"
             aria-controls="mobile-menu"
             aria-expanded={isMenuOpen}
           >
@@ -90,12 +85,12 @@ const Navigation = () => {
 
       {isMenuOpen && (
         <div className="md:hidden" id="mobile-menu">
-           <div className="space-y-1 bg-primary-dark px-2 pt-2 pb-3 sm:px-3">
+          <div className="space-y-1 bg-[#0a0a0a] px-4 pt-2 pb-3">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className="block rounded-md px-3 py-2 text-base font-medium uppercase tracking-widest text-text-primary hover:bg-secondary-dark"
+                className="block rounded-md px-3 py-2 text-base font-medium text-[#ff0066] hover:text-[#ff3385] hover:bg-[#1a1a2e]"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.label}

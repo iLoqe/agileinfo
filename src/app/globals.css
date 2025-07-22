@@ -2,31 +2,48 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --font-sans: 'Inter', sans-serif;
-  --font-mono: monospace;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
+  * {
+    @apply transition-colors duration-200;
+  }
+  
   :root {
+    --background: #ffffff;
+    --foreground: #171717;
+    
+    --color-primary-dark: #ffffff;
+    --color-secondary-dark: #f8f9fa;
+    --color-accent-blue: #0066cc;
+    --color-accent-pink: #ff0066;
+    --color-accent-pink-hover: #ff3385;
+    --color-text-primary: #171717;
+    --color-text-secondary: #4a5568;
+    --color-card-background: #ffffff;
+    --color-border: rgba(0,0,0,0.1);
+    --color-nav-bg: #ffffff;
+  }
+
+  .dark {
     --background: #0a0a0a;
     --foreground: #ededed;
+    
+    --color-primary-dark: #1a1a2e;
+    --color-secondary-dark: #16213e;
+    --color-accent-blue: #0f3460;
+    --color-accent-pink: #ff0066;
+    --color-accent-pink-hover: #ff3385;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #e0e6ed;
+    --color-card-background: #1e293b;
+    --color-border: rgba(255,255,255,0.1);
+    --color-nav-bg: #0a0a0a;
   }
 }
 
 :root {
-  --color-primary-dark: #1a1a2e;
-  --color-secondary-dark: #16213e;
-  --color-accent-blue: #0f3460;
-  --color-accent-green: #4CAF50;
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #e0e6ed;
-  --color-card-background: #1e293b;
-  --color-border: rgba(255,255,255,0.1);
-
   --font-inter: 'Inter', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: monospace;
 
   --text-hero-heading: 48px;
   --text-section-heading: 36px;
@@ -43,13 +60,21 @@
   --radius-card: 12px;
   --radius-button: 8px;
 
+  --shadow-card: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.dark {
   --shadow-card: 0 4px 20px rgba(0,0,0,0.3);
 }
 
 @layer base {
+  html {
+    @apply antialiased;
+  }
+
   html, body {
     font-family: var(--font-inter);
-    background: linear-gradient(to bottom, var(--color-primary-dark), #000000);
+    background: var(--background);
     color: var(--color-text-secondary);
     line-height: 1.6;
     margin: 0;
