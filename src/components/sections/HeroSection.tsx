@@ -5,57 +5,50 @@ import Image from "next/image";
 import Link from "next/link";
 
 const HeroSection = () => {
-    const [typedText, setTypedText] = useState("");
-    const baseText = "Transforming Ideas into Digital S";
-    const textToType = "olutions";
-
-    useEffect(() => {
-        let currentText = "";
-        let i = 0;
-        if (textToType.length > 0) {
-            const typingInterval = setInterval(() => {
-                if (i < textToType.length) {
-                    currentText += textToType[i];
-                    setTypedText(currentText);
-                    i++;
-                } else {
-                    clearInterval(typingInterval);
-                }
-            }, 150);
-
-            return () => clearInterval(typingInterval);
-        }
-    }, []);
-
     return (
         <>
             <style>
                 {`
-                @keyframes blink {
-                    50% { opacity: 0; }
+                .gradient-text {
+                    background: linear-gradient(90deg, #ff4e9b 0%, #ff6ec4 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    text-fill-color: transparent;
                 }
-                .cursor-blink {
-                    animation: blink 1s step-end infinite;
+                .floating-dot {
+                    position: absolute;
+                    border-radius: 50%;
+                    opacity: 0.6;
+                    z-index: 0;
                 }
                 `}
             </style>
-            <section className="w-full">
-                <div className="max-w-[1200px] mx-auto px-5 pt-20 pb-10 md:pt-28 md:pb-20 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            <section className="w-full relative overflow-hidden min-h-[600px]">
+                {/* Floating Dots/Shapes */}
+                <span className="floating-dot" style={{width: '32px', height: '32px', background: '#ff4e9b', top: '10%', left: '5%'}}></span>
+                <span className="floating-dot" style={{width: '18px', height: '18px', background: '#6ec6ff', top: '30%', left: '20%'}}></span>
+                <span className="floating-dot" style={{width: '24px', height: '24px', background: '#ffb86c', top: '60%', left: '10%'}}></span>
+                <span className="floating-dot" style={{width: '20px', height: '20px', background: '#c792ea', top: '80%', left: '30%'}}></span>
+                <span className="floating-dot" style={{width: '40px', height: '40px', background: '#ff4e9b', top: '20%', right: '10%'}}></span>
+                <span className="floating-dot" style={{width: '16px', height: '16px', background: '#6ec6ff', top: '70%', right: '15%'}}></span>
+                {/* Large background shape */}
+                <div className="absolute rounded-full bg-pink-900/30 w-[600px] h-[600px] -top-40 -left-40 z-0" />
+                <div className="max-w-[1200px] mx-auto px-5 pt-20 pb-10 md:pt-28 md:pb-20 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center relative z-10">
                     <div className="flex flex-col gap-6 text-center lg:text-left animate-fade-in-up">
-                        <h1 className="text-[40px] md:text-5xl font-bold text-text-primary !leading-tight">
-                            {baseText}
-                            <span>{typedText}</span>
-                            <span className="cursor-blink inline-block -ml-1">|</span>
+                        <h1 className="text-[40px] md:text-5xl font-bold !leading-tight gradient-text">
+                            Building Future-Ready<br />E-Commerce Platforms
                         </h1>
+                        <h2 className="text-2xl font-semibold text-white mt-2">Transform Your Business with Cutting-Edge Technology Solutions</h2>
                         <p className="text-base text-text-secondary leading-relaxed max-w-lg mx-auto lg:mx-0">
                             At AGIEINFOTECH, we deliver innovative tech solutions that help businesses thrive in the digital era. Our expert team is committed to excellence in every project we undertake.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 mt-2 justify-center lg:justify-start">
-                            <Link href="#" className="uppercase tracking-wider text-sm font-medium border border-text-primary text-text-primary px-8 py-2.5 rounded-lg hover:bg-white/10 transition-colors duration-300">
-                                Internship
+                            <Link href="#" className="uppercase tracking-wider text-sm font-bold px-8 py-3 rounded-full bg-gradient-to-r from-pink-500 to-pink-400 text-white shadow-lg hover:from-pink-600 hover:to-pink-500 transition-all">
+                                INTERNSHIP
                             </Link>
-                            <Link href="#" className="uppercase tracking-wider text-sm font-medium border border-text-primary text-text-primary px-8 py-2.5 rounded-lg hover:bg-white/10 transition-colors duration-300">
-                                Aptiquest
+                            <Link href="#" className="uppercase tracking-wider text-sm font-bold px-8 py-3 rounded-full border-2 border-pink-400 text-pink-400 hover:bg-pink-400 hover:text-white transition-all">
+                                APTIQUEST
                             </Link>
                         </div>
                     </div>

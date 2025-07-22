@@ -9,6 +9,7 @@ import CertificationsSection from '@/components/sections/CertificationsSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import CollaboratorsSection from '@/components/sections/CollaboratorsSection';
 import ChatWidget from '@/components/sections/ChatWidget';
+import Footer from '@/components/sections/Footer';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -36,6 +37,7 @@ export default function Home() {
           <CollaboratorsSection />
         </main>
         <ChatWidget />
+        <Footer />
       </div>
     </div>
   );
