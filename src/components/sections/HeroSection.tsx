@@ -62,9 +62,12 @@ const HeroSection = () => {
                     opacity: 0.6;
                     z-index: 0;
                 }
+                .hero-custom-cursor {
+                    cursor: url('/image.png') 12 12;
+                }
                 `}
             </style>
-            <section className="w-full relative overflow-hidden min-h-[600px]">
+            <section className="w-full relative overflow-hidden min-h-[600px] hero-custom-cursor">
                 {/* Floating Dots/Shapes */}
                 <span className="floating-dot" style={{width: '32px', height: '32px', background: '#ff4e9b', top: '10%', left: '5%'}}></span>
                 <span className="floating-dot" style={{width: '18px', height: '18px', background: '#6ec6ff', top: '30%', left: '20%'}}></span>
