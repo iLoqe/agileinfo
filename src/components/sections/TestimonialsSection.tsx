@@ -73,6 +73,9 @@ const TestimonialCard = ({ quote, name, avatar }: typeof testimonialsData[0]) =>
 );
 
 const TestimonialsSection = () => {
+  // Split testimonials into two rows
+  const row1 = testimonialsData.filter((_, i) => i % 2 === 0);
+  const row2 = testimonialsData.filter((_, i) => i % 2 === 1);
   return (
     <section className="py-20 relative overflow-hidden" id="testimonials">
       <style>{`
@@ -89,16 +92,26 @@ const TestimonialsSection = () => {
           opacity: 0.6;
           z-index: 0;
         }
-        @keyframes testimonial-scroll {
+        @keyframes testimonial-scroll-ltr {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
+        }
+        @keyframes testimonial-scroll-rtl {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
         }
         .testimonial-carousel {
           display: flex;
           width: max-content;
-          animation: testimonial-scroll 50s linear infinite;
         }
-        .testimonial-carousel-wrapper:hover .testimonial-carousel {
+        .testimonial-carousel-row1 {
+          animation: testimonial-scroll-ltr 50s linear infinite;
+        }
+        .testimonial-carousel-row2 {
+          animation: testimonial-scroll-rtl 50s linear infinite;
+        }
+        .testimonial-carousel-wrapper:hover .testimonial-carousel-row1,
+        .testimonial-carousel-wrapper:hover .testimonial-carousel-row2 {
           animation-play-state: paused;
         }
       `}</style>
@@ -116,11 +129,22 @@ const TestimonialsSection = () => {
             See what our clients have to say about our exceptional services and solutions that have helped transform their businesses.
           </p>
         </div>
-        <div className="testimonial-carousel-wrapper w-full overflow-x-hidden">
-          <div className="testimonial-carousel">
-            {[...testimonialsData, ...testimonialsData].map((testimonial, idx) => (
-              <TestimonialCard key={idx} {...testimonial} />
-            ))}
+        <div className="space-y-8">
+          {/* Row 1: left-to-right */}
+          <div className="testimonial-carousel-wrapper w-full overflow-x-hidden">
+            <div className="testimonial-carousel testimonial-carousel-row1">
+              {[...row1, ...row1].map((testimonial, idx) => (
+                <TestimonialCard key={"row1-"+idx} {...testimonial} />
+              ))}
+            </div>
+          </div>
+          {/* Row 2: right-to-left */}
+          <div className="testimonial-carousel-wrapper w-full overflow-x-hidden">
+            <div className="testimonial-carousel testimonial-carousel-row2">
+              {[...row2, ...row2].map((testimonial, idx) => (
+                <TestimonialCard key={"row2-"+idx} {...testimonial} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

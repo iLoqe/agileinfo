@@ -91,7 +91,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12 relative z-10 pb-8">
         {/* Logo and About */}
         <div className="flex-1 min-w-[220px] flex flex-col items-start mb-8 md:mb-0">
-          <Image src="/logo.png" alt="AGILEINFOTECH Logo" width={90} height={60} className="mb-2" />
+          <Image src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/ab4a205c-77f9-481e-8f11-2e2336c993f1-agileinfoz-com/assets/images/logo-white-1.webp" alt="AGIEINFOTECH Logo" width={150} height={38} className="mb-2" />
           <span className="text-lg font-bold text-white mb-2">AGILEINFOTECH</span>
           <p className="text-sm text-white/80 mb-4 max-w-xs">
             Join our community of innovators and stay updated with the latest trends, insights, and opportunities.

@@ -5,6 +5,37 @@ import Image from "next/image";
 import Link from "next/link";
 
 const HeroSection = () => {
+    // Typewriter effect for the main heading
+    const fullText = "Building Future-Ready E-Commerce Platforms";
+    const [typed, setTyped] = useState("");
+    useEffect(() => {
+        let i = 0;
+        let forward = true;
+        let timeout: NodeJS.Timeout;
+        function typeLoop() {
+            if (forward) {
+                if (i < fullText.length) {
+                    setTyped(fullText.slice(0, i + 1));
+                    i++;
+                    timeout = setTimeout(typeLoop, 60);
+                } else {
+                    forward = false;
+                    timeout = setTimeout(typeLoop, 1200); // Pause at full text
+                }
+            } else {
+                if (i > 0) {
+                    setTyped(fullText.slice(0, i - 1));
+                    i--;
+                    timeout = setTimeout(typeLoop, 30);
+                } else {
+                    forward = true;
+                    timeout = setTimeout(typeLoop, 600); // Pause at empty
+                }
+            }
+        }
+        typeLoop();
+        return () => clearTimeout(timeout);
+    }, []);
     return (
         <>
             <style>
@@ -15,6 +46,15 @@ const HeroSection = () => {
                     -webkit-text-fill-color: transparent;
                     background-clip: text;
                     text-fill-color: transparent;
+                }
+                .cursor-blink {
+                    display: inline-block;
+                    width: 1ch;
+                    animation: blink 1s steps(1) infinite;
+                }
+                @keyframes blink {
+                    0%, 50% { opacity: 1; }
+                    51%, 100% { opacity: 0; }
                 }
                 .floating-dot {
                     position: absolute;
@@ -37,7 +77,8 @@ const HeroSection = () => {
                 <div className="max-w-[1200px] mx-auto px-5 pt-20 pb-10 md:pt-28 md:pb-20 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center relative z-10">
                     <div className="flex flex-col gap-6 text-center lg:text-left animate-fade-in-up">
                         <h1 className="text-[40px] md:text-5xl font-bold !leading-tight gradient-text">
-                            Building Future-Ready<br />E-Commerce Platforms
+                            {typed}
+                            <span className="cursor-blink">|</span>
                         </h1>
                         <h2 className="text-2xl font-semibold text-white mt-2">Transform Your Business with Cutting-Edge Technology Solutions</h2>
                         <p className="text-base text-text-secondary leading-relaxed max-w-lg mx-auto lg:mx-0">
